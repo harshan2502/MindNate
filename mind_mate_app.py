@@ -3,7 +3,7 @@ from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 
 st.set_page_config(page_title="MindMate_Mental Helath Monitor")
-st.title("Mimdmate - Daily Menatl Health CHeck-in")
+st.title("Mimdmate - Daily Mental Health CHeck-in")
 st.markdown("Hi there! How are you feeling today? Just type a few lines and I’ll try to understand your mood.")
 userInput=st.text_area("Write how you're feeling:")
 if st.button("Analyze Mood"):
