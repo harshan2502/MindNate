@@ -1,13 +1,16 @@
 import streamlit as st
-from textblob import TextBlob
+from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
+
+
 st.set_page_config(page_title="MindMate_Mental Helath Monitor")
 st.title("Mimdmate - Daily Menatl Health CHeck-in")
 st.markdown("Hi there! How are you feeling today? Just type a few lines and I’ll try to understand your mood.")
 userInput=st.text_area("Write how you're feeling:")
 if st.button("Analyze Mood"):
     if userInput.strip()!="":
-        blob=TextBlob(userInput)
-        sentiscore=blob.sentiment.polarity
+        analyzer=SentimentIntensityAnalyzer()
+        score=analyzer.polarity_scores(userInput)
+        sentiscore=score['compound']
         if sentiscore>0.2:
             mood = "😊 Positive"
             suggestion = "Keep going! You’re doing great."
@@ -24,20 +27,4 @@ if st.button("Analyze Mood"):
         st.write(f"**Detected Mood:**{mood}")
         st.info(suggestion)
 else:
-    st.warning("please write something about how you are feeling!!")
-    
-
-
-
-
-
-
-
-
-
-            
-
-
-            
-
-         
+    st.warning("please write something about how you are feeling!!") 
